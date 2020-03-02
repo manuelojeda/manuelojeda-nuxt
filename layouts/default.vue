@@ -1,11 +1,15 @@
 <template>
   <div>
-    Mi layout bien mamalon :3
-    <navi-bar
-      :menu="menu"
-      :social="social"
-    />
-    <nuxt />
+    <section class="nav-section fixed w-full">
+      <navi-bar
+        :header="header"
+      />
+    </section>
+    <section class="content bg-gray-200">
+      <div class="container mx-auto">
+        <nuxt />
+      </div>
+    </section>
   </div>
 </template>
 
@@ -13,6 +17,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { defineComponent, onServerPrefetch, ref } from '@vue/composition-api'
 import NaviBar from '~/components/Nav/Index.vue'
+import useFetchInitialData from '~/hooks/useFetchInitialData'
 
 export default defineComponent({
   name: 'DefaultLayout',
@@ -20,8 +25,7 @@ export default defineComponent({
     NaviBar
   },
   setup (props, context) {
-    const menu: any = ref({})
-    const social: any = ref({})
+    const header: any = ref({})
 
     onServerPrefetch(async () => {
       const responseMenu = await context.root.$axios({
@@ -32,31 +36,28 @@ export default defineComponent({
         url: 'http://localhost:1337/social-medias'
       })
 
-      menu.value = await responseMenu.data
-      social.value = await responseSocial.data
+      header.value.menu = await responseMenu.data
+      header.value.social = await responseSocial.data
     })
 
     const fetchInitialdata = async () => {
-      const responseMenu = await context.root.$axios({
-        url: 'http://localhost:1337/menus'
-      })
-      const responseSocial = await context.root.$axios({
-        url: 'http://localhost:1337/social-medias'
-      })
-
-      menu.value = await responseMenu.data
-      social.value = await responseSocial.data
+      const initialData = await useFetchInitialData()
+      header.value = await initialData
     }
 
     fetchInitialdata()
     return {
-      menu,
-      social
+      header
     }
   }
 })
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+* {
+  font-family: 'Open Sans';
+}
+.content {
+  padding-top: 4.5rem;
+}
 </style>

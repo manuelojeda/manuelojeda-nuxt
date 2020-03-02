@@ -9,16 +9,16 @@ import {
 import NuxtLoading from './components/nuxt-loading.vue'
 import NuxtBuildIndicator from './components/nuxt-build-indicator'
 
-import '../node_modules/bootstrap/dist/css/bootstrap.css'
+import '../node_modules/@fortawesome/fontawesome-svg-core/styles.css'
 
-import '../node_modules/bootstrap-vue/dist/bootstrap-vue.css'
+import '../assets/css/tailwind.css'
 
 import _6f6c098b from '../layouts/default.vue'
 
 const layouts = { "_default": _6f6c098b }
 
 export default {
-  head: {"meta":[],"link":[],"style":[],"script":[]},
+  head: {"link":[{"rel":"stylesheet","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Open+Sans:300,400,600,700,800&display=swap"}],"meta":[],"style":[],"script":[]},
 
   render (h, props) {
     const loadingEl = h('NuxtLoading', { ref: 'loading' })

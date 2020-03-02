@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="z-0">
     NUXT + TS + Comp API
   </div>
 </template>
@@ -10,6 +10,9 @@ import { defineComponent } from '@vue/composition-api'
 
 export default defineComponent({
   name: 'Index',
+  head: {
+    title: 'Manuel Ojeda - Home'
+  },
   async asyncData (context: any) {
     const response = await context.$axios({
       url: `${context.env.apiBaseUrl}/homepages`
