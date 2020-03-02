@@ -56,8 +56,10 @@ export default defineComponent({
 <style lang="scss" scoped>
 * {
   font-family: 'Open Sans';
+  background-color: #edf2f7;
 }
-.content {
+.content > .container {
   padding-top: 4.5rem;
+  height: 100vh;
 }
 </style>

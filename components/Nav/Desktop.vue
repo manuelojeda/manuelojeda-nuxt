@@ -49,6 +49,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+#NavDesktop {
+  border-bottom: #38b2ac 3px solid;
+}
 .grid {
   display: grid;
   grid-template-columns: 30% 1fr;
